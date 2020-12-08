@@ -1,23 +1,19 @@
-// const path = require('path');
+const path = require('path');
 
-// const express = require('express');
+const express = require('express');
 
-// const bookController = require('../controllers/Book');
+const bookController = require('../controllers/book');
 
-// const router = express.Router();
+const router = express.Router();
 
-// // /admin/add-product => GET
-// router.get('/', bookController.getAllBooks);
+router.get('/', bookController.getAllBooks);
 
-// // /admin/products => GET
-// router.get('/:id', bookController.getSi);
+router.get('/:id', bookController.getSigleBook);
 
-// // /admin/add-product => POST
-// router.post('/add-product', isAuth, adminController.postAddProduct);
+router.post('/', bookController.insertBook);
 
-// router.get('/edit-product/:productId', isAuth, adminController.getEditProduct);
+router.put('/:id', bookController.updateBook);
 
-// router.post('/edit-product', isAuth, adminController.postEditProduct);
+router.delete('/:id', bookController.deleteBook);
 
-
-// module.exports = router;
+module.exports = router;

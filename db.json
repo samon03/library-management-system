@@ -12,6 +12,13 @@
               "genre": "Non fiction",
               "releaseDate": "2000-02-02",
               "bookImage": "https://www.thoughtco.com/thmb/emu72CBwiGp-fwN2focz_XUi_ms=/2048x1476/filters:fill(auto,1)/TheAlchemistCover-5456318ceb53461b9bb6081ed8b99252.jpg"
+       },
+       {
+              "bookName": "5 AM Club",
+              "author": "Paulo coelho",
+              "genre": "Non fiction",
+              "releaseDate": "2000-02-02",
+              "bookImage": "https://www.getstoryshots.com/books/the-5-am-club-summary/"
        }
        
 ]

@@ -1,10 +1,9 @@
 const express = require('express');
-const router = express.Router();
 var ObjectId = require('mongoose').Types.ObjectId;
 
 const Book = require('../models/book');
 
-router.get('/', (req, res) => {
+exports.getAllBooks = (req, res) => {
     Book.find()
      .then((val) => {
         res.send(val);
@@ -12,9 +11,9 @@ router.get('/', (req, res) => {
      .catch(err => {
         console.log(`Cannot connect to the PORT!${JSON.stringify(err, undefined, 2)}`);
      });
-});
+};
 
-router.get('/:id', (req, res) => {
+exports.getSigleBook = (req, res) => {
     var id = req.params.id;
 
     Book.findById(id)
@@ -24,10 +23,9 @@ router.get('/:id', (req, res) => {
      .catch(err => {
         console.log(`Cannot connect to the PORT!${JSON.stringify(err, undefined, 2)}`);
      });
-});
+};
 
-
-router.post('/', (req, res) => {
+exports.insertBook =  (req, res) => {
     var book = new Book({
        bookName: req.body.bookName,
        author: req.body.author,
@@ -44,9 +42,9 @@ router.post('/', (req, res) => {
      .catch(err => {
         console.log(`Cannot connect to the PORT!${JSON.stringify(err, undefined, 2)}`);
      });
-});
+}
 
-router.put('/:id', (req, res) => { 
+exports.updateBook = (req, res) => { 
      var id = req.params.id;
  
      var book = {
@@ -65,9 +63,9 @@ router.put('/:id', (req, res) => {
       .catch(err => {
         console.log(`Cannot connect to the PORT!${JSON.stringify(err, undefined, 2)}`);
       });
-});
+}
 
-router.delete('/:id', (req, res) => {
+exports.deleteBook =  (req, res) => {
     var id = req.params.id;
 
     if(!ObjectId.isValid(id))
@@ -82,6 +80,4 @@ router.delete('/:id', (req, res) => {
      .catch(err => {
         console.log(`Cannot connect to the PORT!${JSON.stringify(err, undefined, 2)}`);
      });
-});
-
-module.exports = router;
+}

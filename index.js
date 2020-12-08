@@ -4,7 +4,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
-const bookController = require('./controllers/Book');
+const bookRoutes = require('./routes/book');
 
 mongoose
   .connect('mongodb+srv://shy:wA1ce9DPE2Q6t62J@cluster1.n1dim.mongodb.net/book')
@@ -21,4 +21,4 @@ const app = express();
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 
-app.use('/library', bookController);
+app.use('/library', bookRoutes);
