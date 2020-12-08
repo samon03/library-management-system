@@ -1,0 +1,7 @@
+GET - http://localhost:3001/librarian/
+
+POST - http://localhost:3001/librarian/
+
+{
+        "name": "Samon"
+}

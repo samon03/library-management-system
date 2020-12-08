@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 var Book = mongoose.model('Book', {
     bookName: {
@@ -25,7 +26,13 @@ var Book = mongoose.model('Book', {
         type: Boolean,
         default: true
     }
-});
+    // ,
+    // librarianId: {
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'Librarian',
+    //     required: true
+    // }
 
+})
 
 module.exports = Book;
