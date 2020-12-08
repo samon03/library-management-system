@@ -1,0 +1,17 @@
+[
+       {
+              "bookName": "Rich dad, poor dad",
+              "author": "Robert Kiyosaki",
+              "genre": "Non fiction",
+              "releaseDate": "2011-03-03",
+              "bookImage": "https://tse4.mm.bing.net/th?id=OIP.v5fTr8lQ-7PWqedW6r1oQgHaHb&pid=Api"
+       },
+       {
+              "bookName": "The alchemist",
+              "author": "Paulo coelho",
+              "genre": "Non fiction",
+              "releaseDate": "2000-02-02",
+              "bookImage": "https://www.thoughtco.com/thmb/emu72CBwiGp-fwN2focz_XUi_ms=/2048x1476/filters:fill(auto,1)/TheAlchemistCover-5456318ceb53461b9bb6081ed8b99252.jpg"
+       }
+       
+]
