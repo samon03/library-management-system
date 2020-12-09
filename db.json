@@ -27,6 +27,11 @@
               "releaseDate": "2000-02-02",
               "bookImage": "https://www.getstoryshots.com/books/the-5-am-club-summary/",
               "librarianId": "5fcf9f391540dc1e20ab3c44"
+       },
+       {
+              "email": "smon@gmail.com",
+              "password": "12345",
+              "role": "librarian"
        }
        
 ]

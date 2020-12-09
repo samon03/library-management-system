@@ -23,57 +23,51 @@ exports.getSigleBook = (req, res) => {
      });
 };
 
-// exports.insertBook =  (req, res) => {
-//    var book = new Book({
-//       bookName: req.body.bookName,
-//       author: req.body.author,
-//       genre: req.body.genre,
-//       releaseDate: req.body.releaseDate,
-//       bookImage: req.body.bookImage,
-//       active: req.body.active
-//    }); 
+exports.insertBook =  (req, res) => {
+   var book = new Book({
+      bookName: req.body.bookName,
+      author: req.body.author,
+      genre: req.body.genre,
+      releaseDate: req.body.releaseDate,
+      bookImage: req.body.bookImage,
+      active: req.body.active
+   }); 
 
-//    book.save()
-//      .then((val) => {
-//         res.send(val);
-//         res.redirect('/library');
-//      }).catch(err => {
-//         console.log("Cannot insert the book");
-//      });
-//   }
+   book.save()
+     .then((val) => {
+        res.send(val);
+     }).catch(err => {
+        console.log("Cannot insert the book");
+     });
+  }
 
-// exports.updateBook = (req, res) => { 
-//     var id = req.params.id;
+exports.updateBook = (req, res) => { 
+    var id = req.params.id;
 
-//     var book = {
-//        bookName: req.body.bookName,
-//        author: req.body.author,
-//        genre: req.body.genre,
-//        releaseDate: req.body.releaseDate,
-//        bookImage: req.body.bookImage,
-//        active: req.body.active
-//     }; 
+    var book = {
+       bookName: req.body.bookName,
+       author: req.body.author,
+       genre: req.body.genre,
+       releaseDate: req.body.releaseDate,
+       bookImage: req.body.bookImage,
+       active: req.body.active
+    }; 
 
-//     Book.findByIdAndUpdate(id, { $set: book }, { new: true })
-//      .then((val) => {
-//        res.send(val);
-//      }).catch(err => {
-//        console.log("Cannot update the book");
-//      });
-// }
+    Book.findByIdAndUpdate(id, { $set: book }, { new: true })
+     .then((val) => {
+       res.send(val);
+     }).catch(err => {
+       console.log("Cannot update the book");
+     });
+  }
 
-// exports.deleteBook =  (req, res) => {
-//    var id = req.params.id;
+exports.deleteBook =  (req, res) => {
+   var id = req.params.id;
 
-//    if(!ObjectId.isValid(id))
-//    {
-//       return res.status(404).send(`No record of ${id}`);
-//    }
-
-//    Book.findByIdAndRemove(id)
-//     .then((val) => {
-//        res.send(val);
-//     }).catch(err => {
-//        console.log("Cannot delete the book");
-//     });
-// }
+   Book.findByIdAndRemove(id)
+    .then((val) => {
+       res.send(val);
+    }).catch(err => {
+       console.log("Cannot delete the book");
+    });
+  }

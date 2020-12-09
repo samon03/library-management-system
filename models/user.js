@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
-var librarian = mongoose.model('Librarian', {
-    name: {
+var user = mongoose.model('User', {
+    email: {
         type: String,
         required: true
     },
@@ -9,10 +9,10 @@ var librarian = mongoose.model('Librarian', {
         type: String,
         required: true
     },
-    admin: {
-        type: Boolean,
-        default: true
+    role: {
+        type: String,
+        required: true
     }
 });
 
-module.exports = librarian;
+module.exports = user;
