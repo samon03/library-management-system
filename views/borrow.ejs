@@ -11,29 +11,14 @@
                         <h5 class="card-title text-muted mt-2 text-center"><b><%= bookItem.bookName %></b></h5>
                         <p class="card-text text-muted"><b>Author:</b> <%= bookItem.author %></p>
                         <p class="card-text text-muted"><b>Genre:</b> <%= bookItem.genre %></p>
-                        <p class="card-text text-muted"><b>Active:</b> 
-                            <% if (bookItem.active == true) { %>
-                                <svg height="50" width="50">
-                                    <circle cx="10" cy="23" r="5" fill="green" />
-                                </svg> 
-                            <% } else { %>     
-                                <svg height="50" width="50">
-                                    <circle cx="10" cy="23" r="5" fill="red" />
-                                </svg> 
-                            <% } %>   
-                        </p>
+                        <p class="card-text text-muted"><b>Active:</b> <%= bookItem.active %></p>
                             <div class="d-flex justify-content-between text-center">
                                 <div class="btn-group bd-placeholder-img card-img-top">
-                                    <!-- <form action="/borrow/<%= bookItem._id %>" method="POST">
+                                    <form action="/borrow/<%= bookItem._id %>" method="POST">
                                         <button type="button" class="btn btn-primary" value="<%= bookItem._id %>">Borrow</button>
-                                    </form>   -->
-                                    <!-- <button type="submit" class="btn btn-primary">
-										<a href="/library/borrow/<%= bookItem._id %>" class="btn btn-primary">View</a>
-									</button> -->
+                                    </form>  
                                     <button type="button" class="btn btn-success">Edit</button>
-                                    <button type="submit" class="btn btn-primary">
-										<a href="/library/<%= bookItem._id %>" class="btn btn-primary">View</a>
-									</button>
+                                    <button type="button" class="btn btn-success">View</button>
                                 </div>
                             </div>        
                         </div>

@@ -23,7 +23,7 @@ exports.getSigleBook = (req, res) => {
      .then((book) => {
          res.render('details', {
             book: book,
-            path: '/library'
+            path: '/library/' + id
          });
          // res.send(book);
      }).catch(err => {
@@ -136,3 +136,22 @@ exports.borrowABook = (req, res) => {
        res.write("<h3>Invalid Request!<h3>");
       });
 }
+
+// get
+
+exports.getAllBorrowBooks = (req, res) => {
+   Borrow.find()
+    .then((borrow) => {
+      // const user = [...borrow.user];
+      // const book = [...borrow.book];
+      //  console.log(user + ' ' + book);
+      //   res.render('/borrow', {
+      //      path: '/library/borrow',
+      //      user: borrow.user,
+      //      book: borrow.book
+      //   });
+      res.send(borrow);
+    }).catch(err => {
+       console.log(`Cannot get all books ${JSON.stringify(err, undefined, 2)}`);
+    });
+};
