@@ -84,19 +84,39 @@ exports.deleteBook =  (req, res) => {
 
   // Request for book
 
+  exports.borrowAllBooks = (req, res) => {
+   var user = req.session.user;
+
+   Book.find()
+      .then(book => {
+         var borrow = new Borrow({
+             user: user,
+             book: book
+         });
+
+         borrow.save()
+            .then((val) => {
+               res.send(val);
+            }).catch(err => {
+               console.log("Cannot insert all books");
+            });
+
+      }).catch(err => {
+       res.write("<h3>Invalid Request!<h3>");
+      });
+}
+
 exports.borrowABook = (req, res) => {
    var id = req.params.id;
-   var userId = req.session.user._id;
+   var user = req.session.user;
 
    Book.findById(id)
       .then(book => {
 
          var borrow = new Borrow({
-             userId: userId,
-             bookId: id
+             user: user,
+             book: book
          });
-
-         console.log(borrow);
 
          borrow.save()
             .then((val) => {

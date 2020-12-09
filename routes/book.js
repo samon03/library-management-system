@@ -19,6 +19,8 @@ router.put('/:id', isLibrarian, bookController.updateBook);
 
 router.delete('/:id', isLibrarian, bookController.deleteBook);
 
+router.post('/borrow', isStudent, bookController.borrowAllBooks);
+
 router.post('/borrow/:id', isStudent, bookController.borrowABook);
 
 module.exports = router;

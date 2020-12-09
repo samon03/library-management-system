@@ -2,14 +2,18 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 var borrow = mongoose.model('Borrow', {
-    userId: {
-        type: Schema.Types.ObjectId,
-        ref: 'User'
-    },
-    bookId: {
-        type: Schema.Types.ObjectId,
-        ref: 'Book'
-    }
+    user: [
+        {
+            type: Object,
+            ref: 'User'
+        }
+    ],
+    book: [
+        {
+            type: Object,
+            ref: 'Book'
+        }
+    ]
 });
 
 module.exports = borrow;
