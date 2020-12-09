@@ -6,8 +6,11 @@ const Borrow = require('../models/borrow');
 
 exports.getAllBooks = (req, res) => {
     Book.find()
-     .then((val) => {
-        res.send(val);
+     .then((book) => {
+         res.render('library', {
+            book: book,
+            path: '/library'
+         });
      }).catch(err => {
         console.log(`Cannot get all books ${JSON.stringify(err, undefined, 2)}`);
      });

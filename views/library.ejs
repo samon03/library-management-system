@@ -1,0 +1,30 @@
+<%- include('./includes/headers.ejs') %> 
+    <div class="row m-3 p-3">
+        <div class="col-md-12">
+            <a href="/logout" class="float-right"><button type="button" class="btn btn-warning">Logout</button></a>       
+            <div class="row">
+                <% book.forEach(bookItem => { %> 
+                <div class="col-md-3 mb-5">                   
+                    <div class="card">
+                        <div class="card-body">
+                        <img src="<%= bookItem.bookImage %>" class="bd-placeholder-img card-img-top p-1" width="100%" max-height="80">
+                        <h5 class="card-title text-muted mt-2 text-center"><b><%= bookItem.bookName %></b></h5>
+                        <p class="card-text text-muted"><b>Author:</b> <%= bookItem.author %></p>
+                        <p class="card-text text-muted"><b>Genre:</b> <%= bookItem.genre %></p>
+                        <p class="card-text text-muted"><b>Active:</b> <%= bookItem.active %></p>
+                            <div class="d-flex justify-content-between text-center">
+                                <div class="btn-group bd-placeholder-img card-img-top">
+                                    <form action="/borrow/<%= bookItem._id %>" method="POST">
+                                        <button type="button" class="btn btn-primary" value="<%= bookItem._id %>">Borrow book</button>
+                                    </form>  
+                                    <button type="button" class="btn btn-success">Edit book</button>
+                                </div>
+                            </div>        
+                        </div>
+                    </div>
+                </div>
+                <% }) %>
+            </div>        
+        </div>
+    </div> 
+<%- include('./includes/headers.ejs') %>
