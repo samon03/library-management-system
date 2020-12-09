@@ -32,6 +32,26 @@
               "email": "smon@gmail.com",
               "password": "12345",
               "role": "librarian"
+       },
+       {
+              "email": "samon@gmail.com",
+              "password": "12345",
+              "role": "student"
+       },
+       {
+              "active": "false",
+              "bookName": "The alchemist",
+              "author": "Paulo coelho",
+              "genre": "Non fiction",
+              "releaseDate": "1997-02-02T00:00:00.000Z",
+              "bookImage": "https://www.thoughtco.com/thmb/emu72CBwiGp-fwN2focz_XUi_ms=/2048x1476/filters:fill(auto,1)/TheAlchemistCover-5456318ceb53461b9bb6081ed8b99252.jpg"
+       },
+       {
+              "active": true,
+              "bookName": "The alchemist",
+              "author": "Paulo coelho",
+              "genre": "Non fiction",
+              "releaseDate": "1997-02-02T00:00:00.000Z",
+              "bookImage": "https://www.thoughtco.com/thmb/emu72CBwiGp-fwN2focz_XUi_ms=/2048x1476/filters:fill(auto,1)/TheAlchemistCover-5456318ceb53461b9bb6081ed8b99252.jpg"
        }
-       
 ]
