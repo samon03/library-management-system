@@ -35,20 +35,20 @@ exports.postSignup = (req,res) => {
 }
 
 exports.getLogin = (req,res) => {
-    if(req.session.email) {
+    if(req.session.user.email || req.session.email) {
         if(req.session.role === "librarian")
         {
-            res.write(`<h1>Hello ${req.session.role}, ${req.session.email} </h1><br>`);
+            res.write(`<h1>Welcome ${req.session.user.role}, ${req.session.user.email} </h1><br>`);
         }
         if(req.session.role === "student")
         {
-            res.write(`<h1>Hello ${req.session.role}, ${req.session.email} </h1><br>`);
+            res.write(`<h1>Welcome ${req.session.user.role}, ${req.session.user.email} </h1><br>`);
         }
-        res.end('<a href='+'/logout'+'>Logout</a>');
+        res.end('<a href='+'/logout'+'>Go to /logout</a>');
     }
     else {
         res.write('<h1>Please login first.</h1>');
-        res.end('<a href='+'/login'+'>Login</a>');
+        res.end('Go go  <a href='+'/login'+'>/login</a>');
     }
 }
 
@@ -57,18 +57,15 @@ exports.postLogin = (req, res, next) => {
     const password = req.body.password;
     const role = req.body.role;
   
-    User.findOne({ email: email })
+    User.findOne({ email: email, password: password, role: role })
       .then(user => {
-            if(user.email == email && user.password == password)
+            if(user.email == email && user.password == password && user.role == role)
             {
                 req.session.isLoggedIn = true;
                 req.session.user = user;
                 req.session.role = role;
-                
+
                 return req.session.save(err => {
-                    if(req.session.role === 'librarian')
-                      res.redirect('/admin');
-                    else
                       res.redirect('/library');                 
                 });
             }
@@ -88,7 +85,8 @@ exports.logout = (req,res) => {
         if(err) {
             return console.log(err);
         }
-        res.redirect('/login');
+        res.write('<h1>Please login first.</h1>');
+        res.end('Go go  <a href='+'/login'+'>/login</a>');
     });
 }
 
