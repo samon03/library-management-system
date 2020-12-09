@@ -20,8 +20,12 @@ exports.getSigleBook = (req, res) => {
     var id = req.params.id;
 
     Book.findById(id)
-     .then((val) => {
-        res.send(val);
+     .then((book) => {
+         res.render('details', {
+            book: book,
+            path: '/library'
+         });
+         // res.send(book);
      }).catch(err => {
         console.log(`Cannot get the book ${JSON.stringify(err, undefined, 2)}`);
      });

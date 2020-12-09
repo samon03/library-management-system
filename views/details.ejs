@@ -1,0 +1,25 @@
+<%- include('./includes/headers.ejs') %> 
+<div class="row m-5 p-5">
+    <div class="col-md-12">
+        <div class="float-right m-2">
+            <a href="/logout" class="float-right"><button type="button" class="btn btn-warning">Logout</button></a>  
+        </div>
+      <div class="row">
+        <div class="col-md-4">
+            <img src="<%= book.bookImage %>" class="bd-placeholder-img card-img-top p-1" width="100%">
+        </div>
+        <div class="col-md-6 m-0">
+          <h3 class="mb-0"><%= book.bookName %></h3>
+          <h4 class="d-inline-block mt-2 mb-2 text-primary"><%= book.author %></h4>
+          <p><b>Genre:</b> <%= book.genre %></p>
+            <div class="input-group mb-3">
+              <div class="input-group-append">
+                <button class="btn btn-sm btn-primary" type="button" id="button-addon2" (click)="addTocart()">Borrow</button>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+<%- include('./includes/headers.ejs') %>
