@@ -25,13 +25,12 @@ var Book = mongoose.model('Book', {
     active: {
         type: Boolean,
         default: true
+    },
+    librarianId: {
+        type: Schema.Types.ObjectId,
+        ref: 'Librarian',
+        required: true
     }
-    // ,
-    // librarianId: {
-    //     type: Schema.Types.ObjectId,
-    //     ref: 'Librarian',
-    //     required: true
-    // }
 
 })
 

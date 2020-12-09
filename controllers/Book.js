@@ -24,21 +24,30 @@ exports.getSigleBook = (req, res) => {
 };
 
 exports.insertBook =  (req, res) => {
-   var book = new Book({
-      bookName: req.body.bookName,
-      author: req.body.author,
-      genre: req.body.genre,
-      releaseDate: req.body.releaseDate,
-      bookImage: req.body.bookImage,
-      active: req.body.active
-   }); 
 
-   book.save()
-     .then((val) => {
-        res.send(val);
-     }).catch(err => {
-        console.log("Cannot insert the book");
-     });
+   librarianId = req.session.user._id;
+   
+   if(librarianId)
+   {
+      // console.log(librarianId);
+      var book = new Book({
+         bookName: req.body.bookName,
+         author: req.body.author,
+         genre: req.body.genre,
+         releaseDate: req.body.releaseDate,
+         bookImage: req.body.bookImage,
+         active: req.body.active,
+         librarianId: librarianId
+      }); 
+   
+      book.save()
+        .then((val) => {
+           res.send(val);
+        }).catch(err => {
+           console.log("Cannot insert the book");
+        });
+   }
+ 
   }
 
 exports.updateBook = (req, res) => { 
