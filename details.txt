@@ -1,9 +1,25 @@
-GET - http://localhost:3001/librarian/
+get - http://localhost:3002/signup
 
-POST - http://localhost:3001/librarian/
+post - http://localhost:3002/signup
 
-{
-        "name": "Samon"
-}
+get - http://localhost:3002/login
 
-http://localhost:3002/borrow/5fd0cb5b54364e0b4c855150
+post - http://localhost:3002/login
+
+get - get - http://localhost:3002/logout
+
+get - show all user - http://localhost:3002/users
+
+show all books - get - http://localhost:3002/library
+
+single book - get - http://localhost:3002/library/5fd0cade5255d02cac9d9389
+
+add book - post - http://localhost:3002/library
+
+update book - put - http://localhost:3002/library/5fd0cade5255d02cac9d9389
+
+delete book - delete - http://localhost:3002/library/5fd0cade5255d02cac9d9389
+
+borrow 1 book - post - http://localhost:3002/borrow/5fd0cb5b54364e0b4c855150
+
+borrow all book - post - http://localhost:3002/library/borrow/
