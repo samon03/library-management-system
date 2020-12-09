@@ -1,7 +1,15 @@
 <%- include('./includes/headers.ejs') %> 
     <div class="row m-3 p-3">
         <div class="col-md-12">
-            <a href="/logout" class="float-right"><button type="button" class="btn btn-warning">Logout</button></a>       
+            <% if(auth) { %> 
+                <a href="/logout" class="float-right">
+                    <button type="button" class="btn btn-success">Log Out</button>
+                </a>   
+            <% } else { %>
+                <a href="/login" class="float-right">
+                    <button type="button" class="btn btn-success">Log In</button>
+                </a> 
+            <% } %>    
             <div class="row">
                 <% book.forEach(bookItem => { %> 
                 <div class="col-md-3 mb-5">                   

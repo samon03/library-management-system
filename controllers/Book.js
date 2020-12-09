@@ -9,6 +9,7 @@ exports.getAllBooks = (req, res) => {
      .then((book) => {
          res.render('library', {
             book: book,
+            auth: req.session.isLoggedIn,
             path: '/library'
          });
      }).catch(err => {
@@ -23,6 +24,7 @@ exports.getSigleBook = (req, res) => {
      .then((book) => {
          res.render('details', {
             book: book,
+            auth: req.session.isLoggedIn,
             path: '/library/' + id
          });
          // res.send(book);
