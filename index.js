@@ -7,7 +7,6 @@ const bodyParser = require('body-parser');
 const MongoDBStore = require('connect-mongodb-session')(session);
 
 const bookRoutes = require('./routes/book');
-const librarianRoutes = require('./routes/librarian');
 const authRoutes = require('./routes/auth');
 
 const MONGODB_URI =
@@ -47,4 +46,3 @@ app.use(bodyParser.json());
 
 app.use(authRoutes);
 app.use('/library', bookRoutes);
-app.use(librarianRoutes);
