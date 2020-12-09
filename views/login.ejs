@@ -1,0 +1,33 @@
+<%- include('./includes/headers.ejs') %>
+	<body>
+		<div class="join-container">
+			<main class="join-main">
+				<form class="form-signin" action="/login" method="POST" novalidate>
+					<div>
+						<h2 class="form-signin-heading">Log In</h2>
+							<label for="email" class="sr-only">Email</label>
+							<input type="email" 
+							name="email" 
+							id="email" 
+							placeholder="Email"
+							value="<%= oldInput.email %>"
+							class="form-control mb-2" required autofocus>
+							<label for="password" class="sr-only">Password</label>
+							<input type="password"
+							name="password"
+							id="password"
+							placeholder="Password"
+							value="<%= oldInput.password %>" class="form-control mb-2" required>
+							<label for="role" class="sr-only">Role</label>
+							<input type="text"
+							name="role"
+							id="role"
+							placeholder="student/librarian"
+							value="<%= oldInput.role %>" class="form-control mb-2" required>
+							<button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
+					</div>   
+                    <a href="/signup">Sign Up</a>
+				</form>
+			</main>
+		</div>
+	<%- include('./includes/headers.ejs') %>

@@ -1,3 +1,5 @@
+const { check, validationResult } = require('express-validator');
+
 const User = require('../models/user');
 
 exports.getAllUsers = (req, res) => {
@@ -8,6 +10,29 @@ exports.getAllUsers = (req, res) => {
         console.log(`Cannot find users`);
      });
 };
+
+exports.getSignup = (req, res, next) => {
+    res.render('signup', {
+      path: '/signup',
+      oldInput: {
+        email: '',
+        password: '',
+        role: ''
+      },
+      validationErrors: []
+    });
+  };
+
+  exports.getLogin = (req, res, next) => {
+    res.render('login', {
+      path: '/login',
+      oldInput: {
+        email: '',
+        password: '',
+        role: ''
+      }
+    });
+  };  
 
 exports.postSignup = (req,res) => {
     const email = req.body.email;
@@ -31,26 +56,26 @@ exports.postSignup = (req,res) => {
          console.log("Cannot signup");
       });
 
-    console.log(email + ' ' + password + ' ' + role + ' user: ' + user);
+    // console.log(email + ' ' + password + ' ' + role + ' user: ' + user);
 }
 
-exports.getLogin = (req,res) => {
-    if(req.session.user.email || req.session.email) {
-        if(req.session.role === "librarian")
-        {
-            res.write(`<h1>Welcome ${req.session.user.role}, ${req.session.user.email} </h1><br>`);
-        }
-        if(req.session.role === "student")
-        {
-            res.write(`<h1>Welcome ${req.session.user.role}, ${req.session.user.email} </h1><br>`);
-        }
-        res.end('<a href='+'/logout'+'>Go to /logout</a>');
-    }
-    else {
-        res.write('<h1>Please login first.</h1>');
-        res.end('Go go  <a href='+'/login'+'>/login</a>');
-    }
-}
+// exports.getLogin = (req,res) => {
+//     if(req.session.user.email || req.session.email) {
+//         if(req.session.role === "librarian")
+//         {
+//             res.write(`<h1>Welcome ${req.session.user.role}, ${req.session.user.email} </h1><br>`);
+//         }
+//         if(req.session.role === "student")
+//         {
+//             res.write(`<h1>Welcome ${req.session.user.role}, ${req.session.user.email} </h1><br>`);
+//         }
+//         res.end('<a href='+'/logout'+'>Go to /logout</a>');
+//     }
+//     else {
+//         res.write('<h1>Please login first.</h1>');
+//         res.end('Go go  <a href='+'/login'+'>/login</a>');
+//     }
+// }
 
 exports.postLogin = (req, res, next) => {
     const email = req.body.email;

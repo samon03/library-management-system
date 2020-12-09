@@ -9,6 +9,8 @@ const MongoDBStore = require('connect-mongodb-session')(session);
 const bookRoutes = require('./routes/book');
 const authRoutes = require('./routes/auth');
 
+var app = express();
+
 const MONGODB_URI =
    'mongodb+srv://shy:wA1ce9DPE2Q6t62J@cluster1.n1dim.mongodb.net/book'
 
@@ -18,7 +20,8 @@ const store = new MongoDBStore({
   collection: 'sessions'
 });
 
-var app = express();
+app.set('view engine', 'ejs');
+app.set('views', 'views');
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: false }));
