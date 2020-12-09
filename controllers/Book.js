@@ -2,6 +2,7 @@ const express = require('express');
 var ObjectId = require('mongoose').Types.ObjectId;
 
 const Book = require('../models/book');
+const Borrow = require('../models/borrow');
 
 exports.getAllBooks = (req, res) => {
     Book.find()
@@ -80,3 +81,31 @@ exports.deleteBook =  (req, res) => {
        console.log("Cannot delete the book");
     });
   }
+
+  // Request for book
+
+exports.borrowABook = (req, res) => {
+   var id = req.params.id;
+   var userId = req.session.user._id;
+
+   Book.findById(id)
+      .then(book => {
+
+         var borrow = new Borrow({
+             userId: userId,
+             bookId: id
+         });
+
+         console.log(borrow);
+
+         borrow.save()
+            .then((val) => {
+               res.send(val);
+            }).catch(err => {
+               console.log("Cannot insert the book");
+            });
+
+      }).catch(err => {
+       res.write("<h3>Invalid Request!<h3>");
+      });
+}

@@ -35,8 +35,7 @@ exports.postSignup = (req,res) => {
 }
 
 exports.getLogin = (req,res) => {
-    // || req.session.email
-    if(req.session.user.email) {
+    if(req.session.user.email || req.session.email) {
         if(req.session.role === "librarian")
         {
             res.write(`<h1>Welcome ${req.session.user.role}, ${req.session.user.email} </h1><br>`);
