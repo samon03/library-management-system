@@ -18,6 +18,7 @@
                         <img src="<%= bookItem.bookImage %>" class="bd-placeholder-img card-img-top p-1" width="100%" max-height="80">
                         <h5 class="card-title text-muted mt-2 text-center"><b><%= bookItem.bookName %></b></h5>
                         <p class="card-text text-muted"><b>Author:</b> <%= bookItem.author %></p>
+                        <!-- <p class="card-text text-muted"><b>Pubnished: </b> <%= bookItem.releaseDate %></p> -->
                         <p class="card-text text-muted"><b>Genre:</b> <%= bookItem.genre %></p>
                         <p class="card-text text-muted"><b>Active:</b> 
                             <% if (bookItem.active == true) { %>
@@ -38,7 +39,9 @@
                                     <!-- <button type="submit" class="btn btn-primary">
 										<a href="/library/borrow/<%= bookItem._id %>" class="btn btn-primary">View</a>
 									</button> -->
-                                    <button type="button" class="btn btn-success">Edit</button>
+                                    <button type="button" class="btn btn-success">
+                                        <a href="/library/edit/<%= bookItem._id %>?edit=true" class="btn btn-success">Edit</a>
+                                    </button>
                                     <button type="submit" class="btn btn-primary">
 										<a href="/library/<%= bookItem._id %>" class="btn btn-primary">View</a>
 									</button>

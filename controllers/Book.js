@@ -73,7 +73,7 @@ exports.updateBook = (req, res) => {
     }; 
 
     Book.findByIdAndUpdate(id, { $set: book }, { new: true })
-     .then((val) => {
+     .then((product) => {
        res.send(val);
      }).catch(err => {
        console.log("Cannot update the book");
@@ -141,19 +141,66 @@ exports.borrowABook = (req, res) => {
 
 // get
 
-exports.getAllBorrowBooks = (req, res) => {
-   Borrow.find()
-    .then((borrow) => {
-      // const user = [...borrow.user];
-      // const book = [...borrow.book];
-      //  console.log(user + ' ' + book);
-      //   res.render('/borrow', {
-      //      path: '/library/borrow',
-      //      user: borrow.user,
-      //      book: borrow.book
-      //   });
-      res.send(borrow);
-    }).catch(err => {
-       console.log(`Cannot get all books ${JSON.stringify(err, undefined, 2)}`);
-    });
-};
+exports.getUpdateBook = (req, res) => { 
+   const editMode = req.query.edit;
+   if (!editMode) {
+     return res.redirect('/library');
+   }
+   const bookId = req.params.id;
+   Book.findById(bookId)
+     .then(book => {
+       if (!book) {
+         return res.redirect('/');
+       }
+       res.render('edit', {
+         path: '/edit/' + bookId,
+         editing: editMode,
+         book: book
+       });
+     })
+     .catch(err => console.log(err));
+}
+
+exports.postUpdateBook = (req, res) => { 
+   const bookId = req.body.bookId;
+   const updatedBookName = req.body.bookName;
+   const updatedAuthor = req.body.author;
+   const updatedGenre = req.body.genre;
+   // const updatedReleaseDate = req.body.releaseDate;
+   const updatedBookImage = req.body.bookImage;
+   const updatedActive = req.body.active;
+
+   Book.findById(bookId)
+   .then(book => {
+      book.bookName = updatedBookName;
+      book.author = updatedAuthor;
+      book.genre = updatedGenre;
+      // book.releaseDate = updatedReleaseDate;
+      book.bookImage = updatedBookImage;
+      book.active = updatedActive;
+     return book.save().then(result => {
+       console.log('Updated Book!');
+       res.redirect('/library');
+       
+     });
+   })
+   .catch(err => console.log("Cannot update the book"));
+}
+
+// exports.getAllBorrowBooks = (req, res) => {
+//    Borrow.find()
+//     .then((borrow) => {
+//       // const user = [...borrow.user];
+//       // const book = [...borrow.book];
+//       //  console.log(user + ' ' + book);
+//       //   res.render('/borrow', {
+//       //      path: '/library/borrow',
+//       //      user: borrow.user,
+//       //      book: borrow.book
+//       //   });
+//       res.send(borrow);
+//     }).catch(err => {
+//        console.log(`Cannot get all books ${JSON.stringify(err, undefined, 2)}`);
+//     });
+// };
+

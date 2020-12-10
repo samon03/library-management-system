@@ -51,7 +51,7 @@ exports.postSignup = (req,res) => {
     user.save()
       .then((val) => {
          res.write('<h1>Successfully Registered!</h1>');
-         res.end('<a href='+'/login'+'>Login</a>');
+         res.end('<a href='+'/login'+'>Login Now</a>');
       }).catch(err => {
          console.log("Cannot signup");
       });
@@ -111,7 +111,7 @@ exports.logout = (req,res) => {
             return console.log(err);
         }
         res.write('<h1>Please login first.</h1>');
-        res.end('Go go  <a href='+'/login'+'>/login</a>');
+        res.end('<a href='+'/login'+'>Login Now</a>');
     });
 }
 
