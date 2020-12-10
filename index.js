@@ -11,8 +11,8 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const MongoDBStore = require('connect-mongodb-session')(session);
 
-const bookRoutes = require('./routes/book');
 const authRoutes = require('./routes/auth');
+const bookRoutes = require('./routes/book');
 const moment = require("moment");
 
 dotenv.config();
