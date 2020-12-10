@@ -70,9 +70,10 @@ exports.updateBook = (req, res) => {
 
          borrow.save()
             .then((val) => {
-               res.send(val);
+               res.write("<h3> Request Successfully Send for all books <h3>");
+               res.end('<a href='+'/library'+'>Go to Home</a>');
             }).catch(err => {
-               console.log("Cannot insert all books");
+               console.log("Request Invalid");
             });
 
       }).catch(err => {
@@ -173,6 +174,7 @@ exports.postUpdateBook = (req, res) => {
    res.render('add', {
       path: '/library',
       auth: req.session.isLoggedIn,
+      isRole: req.session.user,
       editing: false
    });
  };

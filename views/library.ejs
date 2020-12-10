@@ -1,5 +1,10 @@
 <%- include('./includes/headers.ejs') %> 
     <div class="row m-3 p-3">
+        <form action="/library/borrow/" method="POST" class="mb-3 float-right">
+            <button class="btn btn-warning" type="submit">
+                <a class="btn btn-warning">Borrow All Books</a>
+            </button>
+        </form>
         <div class="col-md-12">   
             <div class="row">
                 <% book.forEach(bookItem => { %> 
@@ -27,7 +32,6 @@
                             <div class="d-flex justify-content-between text-center">
                                 <div class="btn-group bd-placeholder-img card-img-top">
                                     <form action="/library/borrow/<%= bookItem._id %>" method="POST">
-                                        <!-- <input type="hidden" value="<%= bookItem._id %>" name="bookId"> -->
                                         <button class="btn btn-success" type="submit">
                                             <a class="btn btn-success">Borrow</a>
                                         </button>
