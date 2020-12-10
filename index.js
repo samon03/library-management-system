@@ -1,5 +1,10 @@
 const path = require('path');
 
+const dotenv = require('dotenv');
+const fs = require('fs');
+const compression = require('compression');
+const morgan = require('morgan');
+
 const express = require('express');
 const session = require('express-session');
 const mongoose = require('mongoose');
@@ -10,14 +15,13 @@ const bookRoutes = require('./routes/book');
 const authRoutes = require('./routes/auth');
 const moment = require("moment");
 
-var app = express();
+dotenv.config();
 
-const MONGODB_URI =
-   'mongodb+srv://shy:wA1ce9DPE2Q6t62J@cluster1.n1dim.mongodb.net/book'
+var app = express();
 
 
 const store = new MongoDBStore({
-  uri: MONGODB_URI,
+  uri: process.env.MONGODB_URI,
   collection: 'sessions'
 });
 
@@ -26,6 +30,14 @@ app.set('views', 'views');
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: false }));
+
+const accessLogStream = fs.createWriteStream(
+  path.join(__dirname, 'access.log'),
+  { flags: 'a' }
+);
+
+app.use(compression());
+app.use(morgan('combined', { stream: accessLogStream }));
 
 app.use(
   session({
@@ -41,9 +53,9 @@ app.use((req, res, next)=>{
 });
 
   mongoose
-  .connect(MONGODB_URI)
+  .connect(process.env.MONGODB_URI)
   .then(result => {
-    app.listen(3002);
+    app.listen(process.env.PORT || 3002);
     console.log('===== Connected =====');
   })
   .catch(() => {
