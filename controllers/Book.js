@@ -32,7 +32,7 @@ exports.getSigleBook = (req, res) => {
          });
          // res.send(book);
      }).catch(err => {
-        console.log(`Cannot get the book ${JSON.stringify(err, undefined, 2)}`);
+        console.log("Book Invalid");
      });
 };
 
@@ -82,20 +82,6 @@ exports.updateBook = (req, res) => {
        console.log("Cannot update the book");
      });
   }
-
-// exports.postdeleteBook =  (req, res) => {
-//    const bookId = req.body.bookId;
-
-//    console.log(bookId);
-
-//    Book.deleteOne({ _id: bookId })
-//     .then((val) => {
-//       console.log('DESTROYED BOOK');
-//       //  res.redirect('/library');
-//     }).catch(err => {
-//        console.log("Cannot delete the book");
-//     });
-//   }
 
   // Request for book
 
@@ -196,15 +182,6 @@ exports.postUpdateBook = (req, res) => {
    .catch(err => console.log("Update invalid"));
 }
 
-exports.getAddBook = (req, res, next) => {
-   res.render('edit', {
-     path: '/add',
-     auth: req.session.isLoggedIn,
-     isRole: req.session.user,
-     editing: false
-   });
- };
-
  exports.deleteBook = (req, res, next) => {
    const bookId = req.body.bookId;
    Book.deleteOne({ _id: bookId })
@@ -215,21 +192,10 @@ exports.getAddBook = (req, res, next) => {
      .catch(err => console.log(err));
  };
  
-
-// exports.getAllBorrowBooks = (req, res) => {
-//    Borrow.find()
-//     .then((borrow) => {
-//       // const user = [...borrow.user];
-//       // const book = [...borrow.book];
-//       //  console.log(user + ' ' + book);
-//       //   res.render('/borrow', {
-//       //      path: '/library/borrow',
-//       //      user: borrow.user,
-//       //      book: borrow.book
-//       //   });
-//       res.send(borrow);
-//     }).catch(err => {
-//        console.log(`Cannot get all books ${JSON.stringify(err, undefined, 2)}`);
-//     });
-// };
-
+ exports.getAddBook = (req, res, next) => {
+   res.render('edit', {
+      path: '/library',
+      auth: req.session.isLoggedIn,
+      editing: false
+   });
+ };

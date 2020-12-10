@@ -23,43 +23,39 @@
 	</head>
 	<body>	
         
-        <form action="/library/<% if (editing) { %>edit<% } else { %>add-book<% } %>" method="POST">
+        <!-- <form action="/library/add" method="POST"> -->
             <div class="form-signin">
-                <h2 class="form-signin-heading">Edit book</h2>
+                <h2 class="form-signin-heading">Add book</h2>
                 <label for="title">Title</label>
                 <input type="text" 
                 name="bookName" 
                 id="bookName" 
-                placeholder="title"
-                value="<% if (editing) { %><%= book.bookName %><% } %>""
+                placeholder="Book Name"
                 class="form-control mb-2" required autofocus>
                 <label for="text">ImageUrl</label>
                 <input type="text"
                 placeholder="ImageUrl"
-                name="bookImage" id="bookImage" value="<% if (editing) { %><%= book.bookImage %><% } %>" class="form-control mb-2" required>
+                name="bookImage" id="bookImage" class="form-control mb-2" required>
                 <label for="author">Author</label>
                 <input type="text"
-                name="author" id="author" value="<% if (editing) { %><%= book.author %><% } %>"
+                name="author" id="author"
                 class="form-control mb-2" required>
                 <label for="genre">Author</label>
                 <input type="text"
-                name="genre" id="genre" value="<% if (editing) { %><%= book.genre %><% } %>"
+                name="genre" id="genre"
                 class="form-control mb-2" required>
                 <label for="releaseDate">Release Date</label>
                 <input type="text"
-                name="releaseDate" id="releaseDate" value="<% if (editing) { %><%= book.releaseDate %><% } %>"
+                name="releaseDate" id="releaseDate" 
                 class="form-control mb-2" required>
                 <label for="active">Activate</label>
                 <input type="text"
-                name="active" id="active" value="<% if (editing) { %><%= book.active %><% } %>"
+                name="active" id="active"
                 class="form-control mb-2" required>
-                <% if (editing) { %>
-                    <input type="hidden" value="<%= book._id %>" name="bookId">
-                <% } %>
                 <button class="btn btn-lg btn-primary btn-block" type="submit">
-                    <% if (editing) { %>Update book<% } else { %>Add book<% } %>
+                    Add book
                 </button>
             </div>   
-        </form>
+        <!-- </form> -->
     </body>
 </html>

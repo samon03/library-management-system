@@ -11,8 +11,6 @@ const router = express.Router();
 
 router.get('/', bookController.getAllBooks);
 
-router.get('/:id', bookController.getSigleBook);
-
 router.post('/borrow', isStudent, bookController.borrowAllBooks);
 
 router.post('/borrow/:id', isStudent, bookController.borrowABook);
@@ -20,14 +18,16 @@ router.post('/borrow/:id', isStudent, bookController.borrowABook);
 // new getAllBorrowBooks isLibrarian,
 // router.get('/borrow', bookController.getAllBorrowBooks);
 
+router.get('/add', bookController.getAddBook);
+
 router.post('/delete', isLibrarian, bookController.deleteBook);
  
 router.get('/edit/:id', isLibrarian, bookController.getUpdateBook);
 
 router.post('/:id', isLibrarian, bookController.postUpdateBook);
 
-router.get('/add', isLibrarian, bookController.getAddBook);
+router.get('/:id', bookController.getSigleBook);
 
-router.post('/add', isLibrarian, bookController.postUpdateBook);
+// router.post('/add', isLibrarian, bookController.postUpdateBook);
 
 module.exports = router;
