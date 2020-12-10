@@ -8,6 +8,7 @@ const MongoDBStore = require('connect-mongodb-session')(session);
 
 const bookRoutes = require('./routes/book');
 const authRoutes = require('./routes/auth');
+const moment = require("moment");
 
 var app = express();
 
@@ -33,6 +34,11 @@ app.use(
     saveUninitialized: false,
     store: store
   }));
+
+app.use((req, res, next)=>{
+  res.locals.moment = moment;
+  next();
+});
 
   mongoose
   .connect(MONGODB_URI)

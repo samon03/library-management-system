@@ -1,5 +1,6 @@
 const express = require('express');
 var ObjectId = require('mongoose').Types.ObjectId;
+var moment = require('moment');
 
 const Book = require('../models/book');
 const Borrow = require('../models/borrow');
@@ -146,6 +147,7 @@ exports.getUpdateBook = (req, res) => {
    if (!editMode) {
      return res.redirect('/library');
    }
+
    const bookId = req.params.id;
    Book.findById(bookId)
      .then(book => {
@@ -155,7 +157,8 @@ exports.getUpdateBook = (req, res) => {
        res.render('edit', {
          path: '/edit/' + bookId,
          editing: editMode,
-         book: book
+         book: book,
+         moment: moment
        });
      })
      .catch(err => console.log(err));
@@ -166,7 +169,7 @@ exports.postUpdateBook = (req, res) => {
    const updatedBookName = req.body.bookName;
    const updatedAuthor = req.body.author;
    const updatedGenre = req.body.genre;
-   // const updatedReleaseDate = req.body.releaseDate;
+   const updatedReleaseDate = req.body.releaseDate;
    const updatedBookImage = req.body.bookImage;
    const updatedActive = req.body.active;
 
@@ -175,7 +178,7 @@ exports.postUpdateBook = (req, res) => {
       book.bookName = updatedBookName;
       book.author = updatedAuthor;
       book.genre = updatedGenre;
-      // book.releaseDate = updatedReleaseDate;
+      book.releaseDate = updatedReleaseDate;
       book.bookImage = updatedBookImage;
       book.active = updatedActive;
      return book.save().then(result => {
