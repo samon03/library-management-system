@@ -11,7 +11,7 @@ exports.getAllBooks = (req, res) => {
          res.render('library', {
             book: book,
             auth: req.session.isLoggedIn,
-            isRole: req.session.user,
+            role: req.session.role,
             path: '/library'
          });
      }).catch(err => {
@@ -27,7 +27,7 @@ exports.getSigleBook = (req, res) => {
          res.render('details', {
             book: book,
             auth: req.session.isLoggedIn,
-            isRole: req.session.user,
+            role: req.session.role,
             path: '/library/' + id
          });
          // res.send(book);
@@ -128,6 +128,7 @@ exports.getUpdateBook = (req, res) => {
          editing: editMode,
          book: book,
          auth: req.session.isLoggedIn,
+         role: req.session.role,
          moment: moment
        });
      })
@@ -174,7 +175,7 @@ exports.postUpdateBook = (req, res) => {
    res.render('add', {
       path: '/library',
       auth: req.session.isLoggedIn,
-      isRole: req.session.user,
+      role: req.session.role,
       editing: false
    });
  };

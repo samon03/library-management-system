@@ -15,7 +15,7 @@ exports.getSignup = (req, res, next) => {
     res.render('signup', {
       path: '/signup',
       auth: req.session.isLoggedIn,
-      isRole: req.session.user,
+      role: req.session.role,
       oldInput: {
         email: '',
         password: '',
@@ -29,7 +29,7 @@ exports.getSignup = (req, res, next) => {
     res.render('login', {
       path: '/login',
       auth: req.session.isLoggedIn,
-      isRole: req.session.user,
+      role: req.session.role,
       oldInput: {
         email: '',
         password: '',
@@ -62,24 +62,6 @@ exports.postSignup = (req,res) => {
 
     // console.log(email + ' ' + password + ' ' + role + ' user: ' + user);
 }
-
-// exports.getLogin = (req,res) => {
-//     if(req.session.user.email || req.session.email) {
-//         if(req.session.role === "librarian")
-//         {
-//             res.write(`<h1>Welcome ${req.session.user.role}, ${req.session.user.email} </h1><br>`);
-//         }
-//         if(req.session.role === "student")
-//         {
-//             res.write(`<h1>Welcome ${req.session.user.role}, ${req.session.user.email} </h1><br>`);
-//         }
-//         res.end('<a href='+'/logout'+'>Go to /logout</a>');
-//     }
-//     else {
-//         res.write('<h1>Please login first.</h1>');
-//         res.end('Go go  <a href='+'/login'+'>/login</a>');
-//     }
-// }
 
 exports.postLogin = (req, res, next) => {
     const email = req.body.email;

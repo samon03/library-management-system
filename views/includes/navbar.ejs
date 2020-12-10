@@ -8,9 +8,13 @@
         <li class="nav-item">
           <a class="nav-link" href="/library">Home</a>
         </li>
+        <!-- isRole: req.session.user, -->
+        <% if(auth && role == 'librarian') { %> 
           <li class="nav-item">
               <a class="nav-link" href="/library/add">Add book</a>
           </li>
+        <% } %>   
+        <li><% role %> </li>
         <li class="nav-item">
             <% if(auth) { %> 
                <a class="nav-link" href="/logout">Log Out</a>
