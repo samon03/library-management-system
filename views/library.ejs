@@ -1,15 +1,6 @@
 <%- include('./includes/headers.ejs') %> 
     <div class="row m-3 p-3">
-        <div class="col-md-12">
-            <% if(auth) { %> 
-                <a href="/logout" class="float-right">
-                    <button type="button" class="btn btn-success">Log Out</button>
-                </a>   
-            <% } else { %>
-                <a href="/login" class="float-right">
-                    <button type="button" class="btn btn-success">Log In</button>
-                </a> 
-            <% } %>    
+        <div class="col-md-12">   
             <div class="row">
                 <% book.forEach(bookItem => { %> 
                 <div class="col-md-3 mb-5">                   
@@ -35,18 +26,20 @@
                         </p>
                             <div class="d-flex justify-content-between text-center">
                                 <div class="btn-group bd-placeholder-img card-img-top">
-                                    <!-- <form action="/borrow/<%= bookItem._id %>" method="POST">
-                                        <button type="button" class="btn btn-primary" value="<%= bookItem._id %>">Borrow</button>
-                                    </form>   -->
-                                    <!-- <button type="submit" class="btn btn-primary">
-										<a href="/library/borrow/<%= bookItem._id %>" class="btn btn-primary">View</a>
-									</button> -->
+                                        <!-- <button type="submit" class="btn btn-primary">
+                                            <a href="/library/borrow/<%= bookItem._id %>" class="btn btn-success">Borrow</a>
+                                        </button>     -->
                                     <button type="button" class="btn btn-success">
                                         <a href="/library/edit/<%= bookItem._id %>?edit=true" class="btn btn-success">Edit</a>
                                     </button>
                                     <button type="submit" class="btn btn-primary">
-										<a href="/library/<%= bookItem._id %>" class="btn btn-primary">View</a>
-									</button>
+                                        <a href="/library/<%= bookItem._id %>" class="btn btn-primary">View</a>
+                                    </button>
+
+                                    <form action="/library/delete" method="POST">
+                                        <input type="hidden" value="<%= bookItem._id %>" name="bookId">
+                                        <button class="btn btn-danger" type="submit">Delete</button>
+                                    </form>
                                 </div>
                             </div>        
                         </div>
@@ -56,4 +49,4 @@
             </div>        
         </div>
     </div> 
-<%- include('./includes/headers.ejs') %>
+<%- include('./includes/footer.ejs') %>

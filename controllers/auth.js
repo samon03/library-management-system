@@ -14,6 +14,8 @@ exports.getAllUsers = (req, res) => {
 exports.getSignup = (req, res, next) => {
     res.render('signup', {
       path: '/signup',
+      auth: req.session.isLoggedIn,
+      isRole: req.session.user,
       oldInput: {
         email: '',
         password: '',
@@ -26,6 +28,8 @@ exports.getSignup = (req, res, next) => {
   exports.getLogin = (req, res, next) => {
     res.render('login', {
       path: '/login',
+      auth: req.session.isLoggedIn,
+      isRole: req.session.user,
       oldInput: {
         email: '',
         password: '',
@@ -91,7 +95,7 @@ exports.postLogin = (req, res, next) => {
                 req.session.role = role;
 
                 return req.session.save(err => {
-                      res.redirect('/library');                 
+                     res.redirect('/library');                  
                 });
             }
             else 

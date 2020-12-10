@@ -11,6 +11,7 @@ exports.getAllBooks = (req, res) => {
          res.render('library', {
             book: book,
             auth: req.session.isLoggedIn,
+            isRole: req.session.user,
             path: '/library'
          });
      }).catch(err => {
@@ -26,6 +27,7 @@ exports.getSigleBook = (req, res) => {
          res.render('details', {
             book: book,
             auth: req.session.isLoggedIn,
+            isRole: req.session.user,
             path: '/library/' + id
          });
          // res.send(book);
@@ -81,16 +83,19 @@ exports.updateBook = (req, res) => {
      });
   }
 
-exports.deleteBook =  (req, res) => {
-   var id = req.params.id;
+// exports.postdeleteBook =  (req, res) => {
+//    const bookId = req.body.bookId;
 
-   Book.findByIdAndRemove(id)
-    .then((val) => {
-       res.send(val);
-    }).catch(err => {
-       console.log("Cannot delete the book");
-    });
-  }
+//    console.log(bookId);
+
+//    Book.deleteOne({ _id: bookId })
+//     .then((val) => {
+//       console.log('DESTROYED BOOK');
+//       //  res.redirect('/library');
+//     }).catch(err => {
+//        console.log("Cannot delete the book");
+//     });
+//   }
 
   // Request for book
 
@@ -158,6 +163,7 @@ exports.getUpdateBook = (req, res) => {
          path: '/edit/' + bookId,
          editing: editMode,
          book: book,
+         auth: req.session.isLoggedIn,
          moment: moment
        });
      })
@@ -187,8 +193,28 @@ exports.postUpdateBook = (req, res) => {
        
      });
    })
-   .catch(err => console.log("Cannot update the book"));
+   .catch(err => console.log("Update invalid"));
 }
+
+exports.getAddBook = (req, res, next) => {
+   res.render('edit', {
+     path: '/add',
+     auth: req.session.isLoggedIn,
+     isRole: req.session.user,
+     editing: false
+   });
+ };
+
+ exports.deleteBook = (req, res, next) => {
+   const bookId = req.body.bookId;
+   Book.deleteOne({ _id: bookId })
+     .then(() => {
+       console.log('DESTROYED');
+       res.redirect('/library');
+     })
+     .catch(err => console.log(err));
+ };
+ 
 
 // exports.getAllBorrowBooks = (req, res) => {
 //    Borrow.find()
