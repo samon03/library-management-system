@@ -18,7 +18,7 @@ router.post('/borrow/:id', isStudent, bookController.borrowABook);
 // new getAllBorrowBooks isLibrarian,
 // router.get('/borrow', bookController.getAllBorrowBooks);
 
-router.get('/add', bookController.getAddBook);
+router.get('/add', isLibrarian, bookController.getAddBook);
 
 router.post('/add', isLibrarian, bookController.postAddBook);
 
@@ -29,7 +29,5 @@ router.get('/edit/:id', isLibrarian, bookController.getUpdateBook);
 router.post('/:id', isLibrarian, bookController.postUpdateBook);
 
 router.get('/:id', bookController.getSigleBook);
-
-
 
 module.exports = router;

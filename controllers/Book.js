@@ -36,34 +36,6 @@ exports.getSigleBook = (req, res) => {
      });
 };
 
-// exports.insertBook =  (req, res) => {
-
-//    librarianId = req.session.user._id;
-   
-//    if(librarianId)
-//    {
-//       // console.log(librarianId);
-//       var book = new Book({
-//          bookName: req.body.bookName,
-//          author: req.body.author,
-//          genre: req.body.genre,
-//          releaseDate: req.body.releaseDate,
-//          bookImage: req.body.bookImage,
-//          active: req.body.active,
-//          librarianId: librarianId
-//       }); 
-   
-//       book.save()
-//         .then((val) => {
-//             console.log('Book Added');
-//             res.redirect('library');
-//         }).catch(err => {
-//            console.log("Cannot insert the book");
-//         });
-//    }
- 
-//   }
-
 exports.updateBook = (req, res) => { 
     var id = req.params.id;
 
@@ -127,8 +99,12 @@ exports.borrowABook = (req, res) => {
                console.log("Cannot insert the book");
             });
 
+         res.write("<h3> Request Successfully Send <h3>");
+         res.end('<a href='+'/library'+'>Go to Home</a>');
+
       }).catch(err => {
-       res.write("<h3>Invalid Request!<h3>");
+         res.write("<h3>Invalid Request!<h3>");
+         res.end('/login');
       });
 }
 
