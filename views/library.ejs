@@ -1,10 +1,12 @@
 <%- include('./includes/headers.ejs') %> 
     <div class="row m-3 p-3">
+        <% if(auth && role == 'student') { %> 
         <form action="/library/borrow/" method="POST" class="mb-3 float-right">
             <button class="btn btn-warning" type="submit">
                 <a class="btn btn-warning">Borrow All Books</a>
             </button>
         </form>
+        <% } %> 
         <div class="col-md-12">   
             <div class="row">
                 <% book.forEach(bookItem => { %> 
@@ -31,6 +33,7 @@
                         </p>
                             <div class="d-flex justify-content-between text-center">
                                 <div class="btn-group bd-placeholder-img card-img-top">
+                                    <% if(auth && role == 'student') { %> 
                                     <form action="/library/borrow/<%= bookItem._id %>" method="POST">
                                         <button class="btn btn-success" type="submit">
                                             <a class="btn btn-success">Borrow</a>
@@ -38,7 +41,8 @@
                                     </form>
                                     <button type="submit" class="btn btn-primary">
                                         <a href="/library/<%= bookItem._id %>" class="btn btn-primary">View</a>
-                                    </button>    
+                                    </button> 
+                                    <% } else if(auth && role == 'librarian') { %> 
                                     <button type="button" class="btn btn-success">
                                         <a href="/library/edit/<%= bookItem._id %>?edit=true" class="btn btn-success">Edit</a>
                                     </button>
@@ -48,6 +52,7 @@
                                             <a class="btn btn-danger">Delete</a>
                                         </button>
                                     </form>
+                                    <% } %> 
                                 </div>
                             </div>        
                         </div>

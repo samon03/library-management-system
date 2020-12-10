@@ -9,6 +9,17 @@
           <h3 class="mb-0"><%= book.bookName %></h3>
           <h4 class="d-inline-block mt-2 mb-2 text-primary"><%= book.author %></h4>
           <p><b>Genre:</b> <%= book.genre %></p>
+          <p class="card-text text-muted"><b>Active:</b> 
+            <% if (book.active == true) { %>
+                <svg height="50" width="50">
+                    <circle cx="10" cy="23" r="5" fill="green" />
+                </svg> 
+            <% } else { %>     
+                <svg height="50" width="50">
+                    <circle cx="10" cy="23" r="5" fill="red" />
+                </svg> 
+            <% } %>   
+        </p>
         </div>
       </div>
     </div>
