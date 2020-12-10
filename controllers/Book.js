@@ -36,32 +36,33 @@ exports.getSigleBook = (req, res) => {
      });
 };
 
-exports.insertBook =  (req, res) => {
+// exports.insertBook =  (req, res) => {
 
-   librarianId = req.session.user._id;
+//    librarianId = req.session.user._id;
    
-   if(librarianId)
-   {
-      // console.log(librarianId);
-      var book = new Book({
-         bookName: req.body.bookName,
-         author: req.body.author,
-         genre: req.body.genre,
-         releaseDate: req.body.releaseDate,
-         bookImage: req.body.bookImage,
-         active: req.body.active,
-         librarianId: librarianId
-      }); 
+//    if(librarianId)
+//    {
+//       // console.log(librarianId);
+//       var book = new Book({
+//          bookName: req.body.bookName,
+//          author: req.body.author,
+//          genre: req.body.genre,
+//          releaseDate: req.body.releaseDate,
+//          bookImage: req.body.bookImage,
+//          active: req.body.active,
+//          librarianId: librarianId
+//       }); 
    
-      book.save()
-        .then((val) => {
-           res.send(val);
-        }).catch(err => {
-           console.log("Cannot insert the book");
-        });
-   }
+//       book.save()
+//         .then((val) => {
+//             console.log('Book Added');
+//             res.redirect('library');
+//         }).catch(err => {
+//            console.log("Cannot insert the book");
+//         });
+//    }
  
-  }
+//   }
 
 exports.updateBook = (req, res) => { 
     var id = req.params.id;
@@ -193,9 +194,44 @@ exports.postUpdateBook = (req, res) => {
  };
  
  exports.getAddBook = (req, res, next) => {
-   res.render('edit', {
+   res.render('add', {
       path: '/library',
       auth: req.session.isLoggedIn,
       editing: false
    });
+ };
+
+ exports.postAddBook = (req, res, next) => {
+   librarianId = req.session.user._id;
+      
+      if(librarianId)
+      {
+         const updatedBookName = req.body.bookName;
+         const updatedAuthor = req.body.author;
+         const updatedGenre = req.body.genre;
+         const updatedReleaseDate = req.body.releaseDate;
+         const updatedBookImage = req.body.bookImage;
+         const updatedActive = req.body.active;
+    
+         var book = new Book({
+            bookName: updatedBookName,
+            author: updatedAuthor,
+            genre: updatedGenre,
+            releaseDate: updatedReleaseDate,
+            bookImage: updatedBookImage,
+            active: updatedActive,
+            librarianId: librarianId
+         });
+
+         book.save()
+            .then(result => {
+               console.log('Added Book');
+               res.redirect('/library');
+            })
+            .catch(err => {
+               console.log('Invalid');
+            });
+   } else {
+      res.write('<h4>You are not allowed</h4>');
+   }
  };

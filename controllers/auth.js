@@ -100,7 +100,7 @@ exports.postLogin = (req, res, next) => {
             }
             else 
             {
-                res.write('<h4> User not exist! Please signup first.</h4>');
+              res.redirect('/login');
             }
       }).catch(() => {
         console.log("User not found!");
@@ -114,8 +114,7 @@ exports.logout = (req,res) => {
         if(err) {
             return console.log(err);
         }
-        res.write('<h1>Please login first.</h1>');
-        res.end('<a href='+'/login'+'>Login Now</a>');
+        res.redirect('/login');
     });
 }
 

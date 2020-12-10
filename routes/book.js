@@ -20,6 +20,8 @@ router.post('/borrow/:id', isStudent, bookController.borrowABook);
 
 router.get('/add', bookController.getAddBook);
 
+router.post('/add', isLibrarian, bookController.postAddBook);
+
 router.post('/delete', isLibrarian, bookController.deleteBook);
  
 router.get('/edit/:id', isLibrarian, bookController.getUpdateBook);
@@ -28,6 +30,6 @@ router.post('/:id', isLibrarian, bookController.postUpdateBook);
 
 router.get('/:id', bookController.getSigleBook);
 
-// router.post('/add', isLibrarian, bookController.postUpdateBook);
+
 
 module.exports = router;
