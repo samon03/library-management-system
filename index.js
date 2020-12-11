@@ -10,9 +10,6 @@ const session = require('express-session');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const MongoDBStore = require('connect-mongodb-session')(session);
-
-const authRoutes = require('./routes/auth');
-const bookRoutes = require('./routes/book');
 const moment = require("moment");
 
 dotenv.config();
@@ -36,8 +33,14 @@ const accessLogStream = fs.createWriteStream(
   { flags: 'a' }
 );
 
+const authRoutes = require('./routes/auth');
+const bookRoutes = require('./routes/book');
+
 app.use(compression());
 app.use(morgan('combined', { stream: accessLogStream }));
+
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.json());
 
 app.use(
   session({
@@ -62,8 +65,7 @@ app.use((req, res, next)=>{
     console.log(`Cannot connect to the PORT!${JSON.stringify(err, undefined, 2)}`);
   });
 
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(bodyParser.json());
+
 
 app.use(authRoutes);
 app.use('/library', bookRoutes);
