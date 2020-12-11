@@ -25,16 +25,13 @@ const store = new MongoDBStore({
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(bodyParser.urlencoded({ extended: false }));
-
 const accessLogStream = fs.createWriteStream(
   path.join(__dirname, 'access.log'),
   { flags: 'a' }
 );
 
-const authRoutes = require('./routes/auth');
-const bookRoutes = require('./routes/book');
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(compression());
 app.use(morgan('combined', { stream: accessLogStream }));
@@ -54,6 +51,9 @@ app.use((req, res, next)=>{
   res.locals.moment = moment;
   next();
 });
+
+const authRoutes = require('./routes/auth');
+const bookRoutes = require('./routes/book');
 
   mongoose
   .connect(process.env.MONGODB_URI)
