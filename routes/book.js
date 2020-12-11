@@ -2,7 +2,7 @@ const path = require('path');
 
 const express = require('express');
 
-const bookController = require('app/controllers/book');
+const bookController = require('../controllers/book');
 
 const isLibrarian = require('../middleware/is-librarian');
 const isStudent = require('../middleware/is-student');
