@@ -2,7 +2,7 @@ const path = require('path');
 
 const express = require('express');
 
-const bookController = require('../controllers/book');
+const bookController = require('app/controllers/book');
 
 const isLibrarian = require('../middleware/is-librarian');
 const isStudent = require('../middleware/is-student');
@@ -14,9 +14,6 @@ router.get('/', bookController.getAllBooks);
 router.post('/borrow', isStudent, bookController.borrowAllBooks);
 
 router.post('/borrow/:id', isStudent, bookController.borrowABook);
-
-// new getAllBorrowBooks isLibrarian,
-// router.get('/borrow', bookController.getAllBorrowBooks);
 
 router.get('/add', isLibrarian, bookController.getAddBook);
 
