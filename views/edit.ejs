@@ -1,6 +1,6 @@
 <%- include('./includes/headers.ejs') %> 
         
-        <form action="/library/<% if (editing) { %>edit<% } else { %>add-book<% } %>" method="POST">
+        <form action="/<% if (editing) { %>edit<% } else { %>add-book<% } %>" method="POST">
             <div class="form-signin">
                 <h2 class="form-signin-heading">
                     <% if (editing) { %> Edit book <% } else { %> Add Book <% } %></h2>

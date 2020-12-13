@@ -77,7 +77,7 @@ exports.postLogin = (req, res, next) => {
                 req.session.role = role;
 
                 return req.session.save(err => {
-                     res.redirect('/library');                  
+                     res.redirect('/');                  
                 });
             }
             else 

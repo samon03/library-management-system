@@ -68,4 +68,4 @@ const bookRoutes = require('./routes/book');
 
 
 app.use(authRoutes);
-app.use('/library', bookRoutes);
+app.use(bookRoutes);

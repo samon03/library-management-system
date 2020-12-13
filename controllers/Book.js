@@ -12,7 +12,7 @@ exports.getAllBooks = (req, res) => {
             book: book,
             auth: req.session.isLoggedIn,
             role: req.session.role,
-            path: '/library'
+            path: '/'
          });
      }).catch(err => {
         console.log(`Cannot get all books ${JSON.stringify(err, undefined, 2)}`);
@@ -28,7 +28,7 @@ exports.getSigleBook = (req, res) => {
             book: book,
             auth: req.session.isLoggedIn,
             role: req.session.role,
-            path: '/library/' + id
+            path: '/' + id
          });
          // res.send(book);
      }).catch(err => {
@@ -71,7 +71,7 @@ exports.updateBook = (req, res) => {
          borrow.save()
             .then((val) => {
                res.write("<h3> Request Successfully Send for all books <h3>");
-               res.end('<a href='+'/library'+'>Go to Home</a>');
+               res.end('<a href='+'/'+'>Go to Home</a>');
             }).catch(err => {
                console.log("Request Invalid");
             });
@@ -101,7 +101,7 @@ exports.borrowABook = (req, res) => {
             });
 
          res.write("<h3> Request Successfully Send <h3>");
-         res.end('<a href='+'/library'+'>Go to Home</a>');
+         res.end('<a href='+'/'+'>Go to Home</a>');
 
       }).catch(err => {
          res.write("<h3>Invalid Request!<h3>");
@@ -114,7 +114,7 @@ exports.borrowABook = (req, res) => {
 exports.getUpdateBook = (req, res) => { 
    const editMode = req.query.edit;
    if (!editMode) {
-     return res.redirect('/library');
+     return res.redirect('/');
    }
 
    const bookId = req.params.id;
@@ -154,7 +154,7 @@ exports.postUpdateBook = (req, res) => {
       book.active = updatedActive;
      return book.save().then(result => {
        console.log('Updated Book!');
-       res.redirect('/library');
+       res.redirect('/');
        
      });
    })
@@ -166,14 +166,14 @@ exports.postUpdateBook = (req, res) => {
    Book.deleteOne({ _id: bookId })
      .then(() => {
        console.log('DESTROYED');
-       res.redirect('/library');
+       res.redirect('/');
      })
      .catch(err => console.log(err));
  };
  
  exports.getAddBook = (req, res, next) => {
    res.render('add', {
-      path: '/library',
+      path: '/',
       auth: req.session.isLoggedIn,
       role: req.session.role,
       editing: false
@@ -205,7 +205,7 @@ exports.postUpdateBook = (req, res) => {
          book.save()
             .then(result => {
                console.log('Added Book');
-               res.redirect('/library');
+               res.redirect('/');
             })
             .catch(err => {
                console.log('Invalid');

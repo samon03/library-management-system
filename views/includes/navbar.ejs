@@ -1,17 +1,17 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/library">Library</a>
+    <a class="navbar-brand" href="/">Library</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="/library">Home</a>
+          <a class="nav-link" href="/">Home</a>
         </li>
         <!-- isRole: req.session.user, -->
         <% if(auth && role == 'librarian') { %> 
           <li class="nav-item">
-              <a class="nav-link" href="/library/add">Add book</a>
+              <a class="nav-link" href="/add">Add book</a>
           </li>
         <% } %>   
         <li class="nav-item">

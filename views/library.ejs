@@ -1,65 +1,66 @@
-<%- include('./includes/headers.ejs') %> 
-    <div class="row m-3 p-3">
-        <% if(auth && role == 'student') { %> 
-        <form action="/library/borrow/" method="POST" class="mb-3 float-right">
-            <button class="btn btn-warning" type="submit">
-                <a class="btn btn-warning">Borrow All Books</a>
-            </button>
-        </form>
-        <% } %> 
-        <div class="col-md-12">   
-            <div class="row">
-                <% book.forEach(bookItem => { %> 
-                <div class="col-md-3 mb-5">                   
-                    <div class="card">
-                        <div class="card-body">
-                        <img src="<%= bookItem.bookImage %>" class="bd-placeholder-img card-img-top p-1" width="100%" max-height="20">
+<%- include('./includes/headers.ejs') %>
+<div class="row m-3 p-3">
+    <% if(auth && role == 'student') { %>
+    <form action="/borrow/" method="POST" class="mb-3 float-right">
+        <button class="btn btn-warning" type="submit">
+            <a class="btn btn-warning">Borrow All Books</a>
+        </button>
+    </form>
+    <% } %>
+    <div class="col-md-12">
+        <div class="row">
+            <% book.forEach(bookItem => { %>
+            <div class="col-md-3 mb-5">
+                <div class="card">
+                    <div class="card-body">
+                        <img src="<%= bookItem.bookImage %>" class="bd-placeholder-img card-img-top p-1" width="100%">
                         <h5 class="card-title text-muted mt-2 text-center"><b><%= bookItem.bookName %></b></h5>
                         <p class="card-text text-muted"><b>Author:</b> <%= bookItem.author %></p>
                         <p class="card-text text-muted"><b>Genre:</b> <%= bookItem.genre %></p>
-                        <p class="card-text text-muted"><b>Released Date: </b> 
+                        <p class="card-text text-muted"><b>Released Date: </b>
                             <%= moment(bookItem.releaseDate).format('MMM D, YYYY') %>
                         </p>
-                        <p class="card-text text-muted"><b>Active:</b> 
+                        <p class="card-text text-muted"><b>Active:</b>
                             <% if (bookItem.active == true) { %>
-                                <svg height="50" width="50">
-                                    <circle cx="10" cy="23" r="5" fill="green" />
-                                </svg> 
-                            <% } else { %>     
-                                <svg height="50" width="50">
-                                    <circle cx="10" cy="23" r="5" fill="red" />
-                                </svg> 
-                            <% } %>   
+                            <svg height="50" width="50">
+                                <circle cx="10" cy="23" r="5" fill="green" />
+                            </svg>
+                            <% } else { %>
+                            <svg height="50" width="50">
+                                <circle cx="10" cy="23" r="5" fill="red" />
+                            </svg>
+                            <% } %>
                         </p>
-                            <div class="d-flex justify-content-between text-center">
-                                <div class="btn-group bd-placeholder-img card-img-top">
-                                    <% if(auth && role == 'student') { %> 
-                                    <form action="/library/borrow/<%= bookItem._id %>" method="POST">
-                                        <button class="btn btn-success" type="submit">
-                                            <a class="btn btn-success">Borrow</a>
-                                        </button>
-                                    </form>
-                                    <button type="submit" class="btn btn-primary">
-                                        <a href="/library/<%= bookItem._id %>" class="btn btn-primary">View</a>
-                                    </button> 
-                                    <% } else if(auth && role == 'librarian') { %> 
-                                    <button type="button" class="btn btn-success">
-                                        <a href="/library/edit/<%= bookItem._id %>?edit=true" class="btn btn-success">Edit</a>
+                        <div class="d-flex justify-content-between text-center">
+                            <div class="btn-group bd-placeholder-img card-img-top">
+                                <% if(auth && role == 'student') { %>
+                                <form action="/borrow/<%= bookItem._id %>" method="POST">
+                                    <button class="btn btn-success" type="submit">
+                                        <a class="btn btn-success">Borrow</a>
                                     </button>
-                                    <form action="/library/delete" method="POST">
-                                        <input type="hidden" value="<%= bookItem._id %>" name="bookId">
-                                        <button class="btn btn-danger" type="submit">
-                                            <a class="btn btn-danger">Delete</a>
-                                        </button>
-                                    </form>
-                                    <% } %> 
-                                </div>
-                            </div>        
+                                </form>
+                                <button type="submit" class="btn btn-primary">
+                                    <a href="/<%= bookItem._id %>" class="btn btn-primary">View</a>
+                                </button>
+                                <% } else if(auth && role == 'librarian') { %>
+                                <button type="button" class="btn btn-success">
+                                    <a href="/edit/<%= bookItem._id %>?edit=true"
+                                        class="btn btn-success">Edit</a>
+                                </button>
+                                <form action="/delete" method="POST">
+                                    <input type="hidden" value="<%= bookItem._id %>" name="bookId">
+                                    <button class="btn btn-danger" type="submit">
+                                        <a class="btn btn-danger">Delete</a>
+                                    </button>
+                                </form>
+                                <% } %>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <% }) %>
-            </div>        
+            </div>
+            <% }) %>
         </div>
-    </div> 
+    </div>
+</div>
 <%- include('./includes/footer.ejs') %>
